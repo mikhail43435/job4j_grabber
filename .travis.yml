@@ -17,7 +17,7 @@ before_install:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-# Отправлять уведомление на почтуyouremail@smtp.ru(Изменить на свою) если сборка упала
+# Отправлять уведомление на почту youremail@smtp.ru(Изменить на свою) если сборка упала
 notifications:
   email:
     recipients:
