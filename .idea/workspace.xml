@@ -11,8 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2ae8068-b107-4dc4-a8b5-6f0a102a9819" name="Default Changelist" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/job4j/grabber/HelloWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/job4j/grabber/AlertRabbit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/job4j_grabber.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/job4j_grabber.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/job4j/grabber/HelloWorld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/job4j/grabber/HelloWorld.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +42,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1oWfIS3ap0v7RDS8eMUhbHV28WQ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,12 +55,25 @@
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="org.infernus.idea.checkstyle.CheckStyleConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.AlertRabbit">
+    <configuration name="AlertRabbit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.job4j.grabber.AlertRabbit" />
+      <module name="job4j_grabber" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.job4j.grabber.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.job4j.grabber.HelloWorld" />
       <module name="job4j_grabber" />
@@ -69,6 +89,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AlertRabbit" />
         <item itemvalue="Application.HelloWorld" />
       </list>
     </recent_temporary>
@@ -126,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613475517548</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="init">
+      <created>1613476566912</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1613476566912</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,29 +189,33 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="583" y="443" key="Github.CreateGistDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1613472906872" />
-    <state width="1461" height="403" key="GridCell.Tab.0.bottom" timestamp="1613476482643">
+    <state width="1117" height="313" key="GridCell.Tab.0.bottom" timestamp="1613478328200">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1461" height="403" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1613476482643" />
-    <state width="1461" height="403" key="GridCell.Tab.0.center" timestamp="1613476482643">
+    <state width="1117" height="313" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1613478328200" />
+    <state width="1117" height="313" key="GridCell.Tab.0.center" timestamp="1613478328200">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1461" height="403" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1613476482643" />
-    <state width="1461" height="403" key="GridCell.Tab.0.left" timestamp="1613476482643">
+    <state width="1117" height="313" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1613478328200" />
+    <state width="1117" height="313" key="GridCell.Tab.0.left" timestamp="1613478328200">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1461" height="403" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1613476482643" />
-    <state width="1461" height="403" key="GridCell.Tab.0.right" timestamp="1613476482643">
+    <state width="1117" height="313" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1613478328200" />
+    <state width="1117" height="313" key="GridCell.Tab.0.right" timestamp="1613478328200">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1461" height="403" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1613476482643" />
-    <state x="159" y="156" key="SettingsEditor" timestamp="1613473786517">
+    <state width="1117" height="313" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1613478328200" />
+    <state x="159" y="156" key="SettingsEditor" timestamp="1613477557736">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="159" y="156" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1613473786517" />
-    <state x="252" y="244" key="Vcs.Push.Dialog.v2" timestamp="1613475523466">
+    <state x="159" y="156" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1613477557736" />
+    <state x="252" y="244" key="Vcs.Push.Dialog.v2" timestamp="1613476568079">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="252" y="244" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1613475523465" />
+    <state x="252" y="244" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1613476568079" />
+    <state x="468" y="258" width="585" height="534" key="find.popup" timestamp="1613477300790">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="468" y="258" width="585" height="534" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1613477300790" />
   </component>
 </project>
