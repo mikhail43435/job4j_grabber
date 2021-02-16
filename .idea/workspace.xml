@@ -10,11 +10,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2ae8068-b107-4dc4-a8b5-6f0a102a9819" name="Default Changelist" comment="init" />
+    <list default="true" id="f2ae8068-b107-4dc4-a8b5-6f0a102a9819" name="Default Changelist" comment="init">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/job4j/grabber/HelloWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,6 +52,26 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="org.infernus.idea.checkstyle.CheckStyleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.job4j.grabber.HelloWorld" />
+      <module name="job4j_grabber" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.job4j.grabber.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HelloWorld" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -89,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613475068487</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="init">
+      <created>1613475517548</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1613475517548</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -124,29 +161,29 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="583" y="443" key="Github.CreateGistDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1613472906872" />
-    <state width="1461" height="291" key="GridCell.Tab.0.bottom" timestamp="1613475296116">
+    <state width="1461" height="403" key="GridCell.Tab.0.bottom" timestamp="1613476482643">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1461" height="291" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1613475296116" />
-    <state width="1461" height="291" key="GridCell.Tab.0.center" timestamp="1613475296116">
+    <state width="1461" height="403" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1613476482643" />
+    <state width="1461" height="403" key="GridCell.Tab.0.center" timestamp="1613476482643">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1461" height="291" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1613475296116" />
-    <state width="1461" height="291" key="GridCell.Tab.0.left" timestamp="1613475296115">
+    <state width="1461" height="403" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1613476482643" />
+    <state width="1461" height="403" key="GridCell.Tab.0.left" timestamp="1613476482643">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1461" height="291" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1613475296115" />
-    <state width="1461" height="291" key="GridCell.Tab.0.right" timestamp="1613475296116">
+    <state width="1461" height="403" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1613476482643" />
+    <state width="1461" height="403" key="GridCell.Tab.0.right" timestamp="1613476482643">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1461" height="291" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1613475296116" />
+    <state width="1461" height="403" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1613476482643" />
     <state x="159" y="156" key="SettingsEditor" timestamp="1613473786517">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="159" y="156" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1613473786517" />
-    <state x="252" y="244" key="Vcs.Push.Dialog.v2" timestamp="1613475070058">
+    <state x="252" y="244" key="Vcs.Push.Dialog.v2" timestamp="1613475523466">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="252" y="244" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1613475070058" />
+    <state x="252" y="244" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1613475523465" />
   </component>
 </project>
