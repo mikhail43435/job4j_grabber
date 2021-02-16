@@ -12,14 +12,14 @@ import static org.quartz.SimpleScheduleBuilder.*;
 
 public class AlertRabbit {
     public static void main(String[] args) {
-        int interval;
-        try (InputStream in = AlertRabbit.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
+        int interval = 0;
+        try (InputStream inputStream =
+                     AlertRabbit.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
             Properties config = new Properties();
-            config.load(in);
+            config.load(inputStream);
             interval = Integer.parseInt(config.getProperty("rabbit.interval"));
         } catch (Exception e) {
             e.printStackTrace();
-            return;
         }
         try {
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();

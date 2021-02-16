@@ -25,3 +25,6 @@ T
 $.idea/checkstyleidea-libs/readme.txt,0\7\07b7bfcbe4a27e2783b05ea0caae034a6bc036ec
 _
 /src/main/java/ru/job4j/grabber/AlertRabbit.java,b\c\bc075c1cfe11c6390dd07f6ac42eb55ef52f2431
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
