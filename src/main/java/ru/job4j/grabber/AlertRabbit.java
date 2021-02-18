@@ -14,7 +14,11 @@ import static org.quartz.TriggerBuilder.*;
 import static org.quartz.SimpleScheduleBuilder.*;
 
 public class AlertRabbit {
+
+    private static Properties config = new Properties();
+
     public static void main(String[] args) {
+        initProp();
         int interval = getInterval();
         try {
             List<Long> store = new ArrayList<>();
@@ -47,6 +51,20 @@ public class AlertRabbit {
     }
 
     /**
+     * Метод загружает файл свойств
+     */
+    private static void initProp() {
+        Properties config = new Properties();
+        try (InputStream inputStream =
+                     AlertRabbit.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
+            config.load(inputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        AlertRabbit.config = config;
+    }
+
+    /**
      * Метод возвращает время интервало в секундах
      * полученно из файла свойств rabbit.properties.
      *
@@ -54,14 +72,7 @@ public class AlertRabbit {
      */
     private static int getInterval() {
         int interval = 1;
-        try (InputStream inputStream =
-                     AlertRabbit.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
-            Properties config = new Properties();
-            config.load(inputStream);
-            interval = Integer.parseInt(config.getProperty("rabbit.interval"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        interval = Integer.parseInt(config.getProperty("rabbit.interval"));
         return interval;
     }
 
@@ -69,8 +80,6 @@ public class AlertRabbit {
         Connection connection;
         try (InputStream in = AlertRabbit.class.
                 getClassLoader().getResourceAsStream("rabbit.properties")) {
-            Properties config = new Properties();
-            config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
             connection = DriverManager.getConnection(
                     config.getProperty("url"),
