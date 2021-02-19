@@ -17,7 +17,7 @@ public final class SlqRuDateParser {
     private static final Map<String, String> MAP_MONTHS = new HashMap<>();
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("dd.MM.yyyy").withZone(ZoneId.systemDefault());
-    private final SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+    private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
     private static final Instant TODAY_INSTANT, YESTERDAY_INSTANT;
     private static final String TODAY, YESTERDAY;
 
@@ -52,7 +52,7 @@ public final class SlqRuDateParser {
         }
         String[] stringArray2 = stringArray[0].split(" ");
         return stringArray2.length == 3
-                ? formatter.parse(getDateLongDate(stringArray2)) : formatter.parse(getDateShortDate(stringArray));
+                ? FORMATTER.parse(getDateLongDate(stringArray2)) : FORMATTER.parse(getDateShortDate(stringArray));
     }
 
     private static String getDateShortDate(String... stringArray) {
