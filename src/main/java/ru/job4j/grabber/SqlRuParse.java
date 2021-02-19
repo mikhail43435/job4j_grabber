@@ -34,6 +34,6 @@ public class SqlRuParse {
     private static String getBody(String link) throws IOException {
         Document doc = Jsoup.connect(link).get();
         Elements el = doc.getElementsByClass("msgBody");
-        return el.get(1).text();
+        return nonNull(el.get(1)) ? el.get(1).text() : "";
     }
 }
