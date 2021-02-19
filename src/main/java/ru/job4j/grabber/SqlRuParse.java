@@ -4,6 +4,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import ru.job4j.grabber.model.Parse;
+import ru.job4j.grabber.model.Post;
 
 import java.io.IOException;
 import java.text.ParseException;

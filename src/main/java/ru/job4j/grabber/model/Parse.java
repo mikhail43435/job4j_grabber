@@ -1,4 +1,6 @@
-package ru.job4j.grabber;
+package ru.job4j.grabber.model;
+
+import ru.job4j.grabber.model.Post;
 
 import java.io.IOException;
 import java.text.ParseException;

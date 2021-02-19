@@ -1,7 +1,8 @@
 package ru.job4j.grabber;
 
-import junit.framework.TestCase;
 import org.junit.Test;
+import ru.job4j.grabber.model.Post;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
