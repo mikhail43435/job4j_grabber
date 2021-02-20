@@ -45,7 +45,7 @@ public class SqlRuParse implements Parse {
 
     @Override
     public List<Post> list(String link) throws IOException, ParseException {
-        List list = new ArrayList();
+        List<Post> list = new ArrayList<>();
         Document doc = Jsoup.connect(link).get();
         Elements el = doc.getElementsByTag("tr");
         for (Element elementTrTag : el) {

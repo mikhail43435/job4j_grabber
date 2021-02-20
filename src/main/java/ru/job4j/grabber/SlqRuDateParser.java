@@ -43,7 +43,8 @@ public final class SlqRuDateParser {
         String[] stringArray2 = stringArray[0].split(" ");
         if (stringArray.length != 2
                 || (stringArray2.length != 1 && stringArray2.length != 3)
-                || ((stringArray2.length == 3) && (stringArray2[0].length() != 2
+                || ((stringArray2.length == 3)
+                && ((stringArray2[0].length() != 1 && stringArray2[0].length() != 2)
                         || stringArray2[1].length() != 3
                         || stringArray2[2].length() != 2))) {
             throw new ParseException("Ошибка парсинга даты: " + textDate, 0);
