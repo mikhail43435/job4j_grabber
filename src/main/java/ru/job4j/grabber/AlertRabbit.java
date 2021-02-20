@@ -3,7 +3,6 @@ package ru.job4j.grabber;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +17,14 @@ public class AlertRabbit {
     private static Properties config = new Properties();
 
     public static void main(String[] args) {
-        initProp();
+        config = LoadProperties.load("rabbit.properties");
         int interval = getInterval();
-        try {
+        try (Connection connection = getConnection()) {
             List<Long> store = new ArrayList<>();
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             JobDataMap data = new JobDataMap();
-            data.put("connection", getConnection());
-
+            data.put("connection", connection);
             JobDetail job = newJob(Rabbit.class)
                     .usingJobData(data)
                     .build();
@@ -51,27 +49,13 @@ public class AlertRabbit {
     }
 
     /**
-     * Метод загружает файл свойств
-     */
-    private static void initProp() {
-        Properties config = new Properties();
-        try (InputStream inputStream =
-                     AlertRabbit.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
-            config.load(inputStream);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        AlertRabbit.config = config;
-    }
-
-    /**
      * Метод возвращает время интервало в секундах
      * полученно из файла свойств rabbit.properties.
      *
      * @return int время интервала в секундах
      */
     private static int getInterval() {
-        int interval = 1;
+        int interval;
         interval = Integer.parseInt(config.getProperty("rabbit.interval"));
         return interval;
     }
