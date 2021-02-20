@@ -1,5 +1,6 @@
 package ru.job4j.grabber.model;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface Store {
@@ -8,5 +9,5 @@ public interface Store {
 
     List<Post> getAll();
 
-    Post findById(String id);
+    Post findById(String id) throws SQLException;
 }

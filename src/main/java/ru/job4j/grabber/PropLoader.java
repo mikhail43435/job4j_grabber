@@ -3,7 +3,11 @@ package ru.job4j.grabber;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class LoadProperties {
+public class PropLoader {
+
+    private PropLoader() {
+        //null
+    }
 
     /**
      * Метод загружает и передает файл свойств

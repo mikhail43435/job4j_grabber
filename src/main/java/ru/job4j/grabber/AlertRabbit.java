@@ -17,7 +17,7 @@ public class AlertRabbit {
     private static Properties config = new Properties();
 
     public static void main(String[] args) {
-        config = LoadProperties.load("rabbit.properties");
+        config = PropLoader.load("rabbit.properties");
         int interval = getInterval();
         try (Connection connection = getConnection()) {
             List<Long> store = new ArrayList<>();
