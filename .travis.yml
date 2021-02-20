@@ -3,19 +3,19 @@ language: java
 jdk:
  - openjdk14
 
- services:
- - postgresql
+services:
+  - postgresql
 
 # используем режим обычного пользователя для сборки проекта
 sudo: false
 
 before_install:
-- psql -c 'create database grabber;' -U postgres
+  - psql -c 'create database grabber;' -U postgres
 
 # после выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo
 # Здесь используется сторонни сервис https://codecov.io/
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
 
 env:
    global:
