@@ -18,8 +18,6 @@ public final class SlqRuDateParser {
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("dd.MM.yyyy").withZone(ZoneId.systemDefault());
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
-    private static final Instant TODAY_INSTANT, YESTERDAY_INSTANT;
-    private static final String TODAY, YESTERDAY;
 
     static {
         MAP_MONTHS.put("янв", "01");
@@ -34,10 +32,6 @@ public final class SlqRuDateParser {
         MAP_MONTHS.put("окт", "10");
         MAP_MONTHS.put("ноя", "11");
         MAP_MONTHS.put("дек", "12");
-        TODAY_INSTANT = Instant.now();
-        YESTERDAY_INSTANT = TODAY_INSTANT.minus(1, ChronoUnit.DAYS);
-        TODAY = DATE_TIME_FORMATTER.format(TODAY_INSTANT);
-        YESTERDAY = DATE_TIME_FORMATTER.format(YESTERDAY_INSTANT);
     }
 
     private SlqRuDateParser() {
@@ -45,12 +39,15 @@ public final class SlqRuDateParser {
     }
 
     public static Date parseDate(String textDate) throws ParseException {
-
         String[] stringArray = textDate.split(",");
-        if (stringArray.length < 2) {
-            return null;
-        }
         String[] stringArray2 = stringArray[0].split(" ");
+        if (stringArray.length != 2
+                || (stringArray2.length != 1 && stringArray2.length != 3)
+                || ((stringArray2.length == 3) && (stringArray2[0].length() != 2
+                        || stringArray2[1].length() != 3
+                        || stringArray2[2].length() != 2))) {
+            throw new ParseException("Ошибка парсинга даты: " + textDate, 0);
+        }
         return stringArray2.length == 3
                 ? FORMATTER.parse(getDateLongDate(stringArray2)) : FORMATTER.parse(getDateShortDate(stringArray));
     }
@@ -58,9 +55,9 @@ public final class SlqRuDateParser {
     private static String getDateShortDate(String... stringArray) {
         String date = "";
         if (stringArray[0].contains("сегодня")) {
-            return TODAY;
+            return DATE_TIME_FORMATTER.format(Instant.now());
         } else if (stringArray[0].contains("вчера")) {
-            return YESTERDAY;
+            return DATE_TIME_FORMATTER.format(Instant.now().minus(1, ChronoUnit.DAYS));
         }
         return date;
     }
