@@ -1,0 +1,2 @@
+[![Build Status](https://travis-ci.org/mikhail43435/job4j_grabber.svg?branch=master)](https://travis-ci.org/mikhail43435/job4j_grabber)
+[![codecov](https://codecov.io/gh/mikhail43435/job4j_grabber/branch/main/graph/badge.svg?token=YE16KMWTCG)](https://codecov.io/gh/mikhail43435/job4j_grabber)
