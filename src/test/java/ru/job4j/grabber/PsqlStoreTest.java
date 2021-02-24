@@ -38,7 +38,7 @@ public class PsqlStoreTest {
 
     }*/
 
-    @Test
+/*    @Test
     public void thenFindAll() throws Exception {
         try (PsqlStore store = new PsqlStore(ConnectionRollback.create(this.init()))) {
             String url = "www.test_001";
@@ -54,14 +54,13 @@ public class PsqlStoreTest {
             store.save(post);
             assertThat(store.getAll().size(), is(1));
         }
-    }
+    }*/
 
 /*    @Test
     public void thenFindById() throws Exception {
         try (PsqlStore store = new PsqlStore(ConnectionRollback.create(this.init()))) {
             String url = "www.test_001";
             String name = "test name";
-
             Post post = new Post(url,
                     name,
                     LocalDate.of(2007, 12, 17),
