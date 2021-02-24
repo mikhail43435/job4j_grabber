@@ -5,14 +5,9 @@ import ru.job4j.grabber.model.Post;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Properties;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -44,9 +39,18 @@ public class PsqlStoreTest {
     }*/
 
     @Test
-    public void thenFindAll() {
-        PsqlStore store = new PsqlStore(this.init());
-        assertThat(store.getAll().size(), is(1));
+    public void thenFindAll() throws Exception {
+        try (PsqlStore store = new PsqlStore(ConnectionRollback.create(this.init()))) {
+            String url = "www.test_001";
+            String name = "test name";
+
+            Post post = new Post(url,
+                    name,
+                    LocalDate.of(2007, Month.DECEMBER, 17),
+                    "test body");
+            store.save(post);
+            assertThat(store.getAll().size(), is(1));
+        }
     }
 
     @Test
