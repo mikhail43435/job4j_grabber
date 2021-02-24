@@ -36,7 +36,7 @@ public class PsqlStore implements Store, AutoCloseable {
             statement.setString(1, post.name.substring(0, Math.min(post.name.length(), 200)));
             statement.setString(2, post.body.substring(0, Math.min(post.body.length(), 10000)));
             statement.setString(3, post.url.substring(0, Math.min(post.url.length(), 255)));
-            statement.setTimestamp(4, new java.sql.Timestamp(post.date.getTime()));
+            statement.setTimestamp(4, new java.sql.Timestamp(post.date.toEpochDay()));
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,7 +52,7 @@ public class PsqlStore implements Store, AutoCloseable {
                 while (resultSet.next()) {
                     posts.add(new Post(resultSet.getString("link"),
                                     resultSet.getString("name"),
-                                    resultSet.getDate("created_date"),
+                                    resultSet.getDate("created_date").toLocalDate(),
                                     resultSet.getString("text")
                     ));
                 }
@@ -73,7 +73,7 @@ public class PsqlStore implements Store, AutoCloseable {
                 if (resultSet.next()) {
                     post = new Post(resultSet.getString("link"),
                             resultSet.getString("name"),
-                            resultSet.getDate("created_date"),
+                            resultSet.getDate("created_date").toLocalDate(),
                             resultSet.getString("text")
                     );
                 }

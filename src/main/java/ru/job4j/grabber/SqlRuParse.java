@@ -75,7 +75,8 @@ public class SqlRuParse implements Parse {
         }
         return new Post(link,
                 elHeader.get(0).text(),
-                SlqRuDateParser.parseDate(elFooter.get(0).text().substring(0, 16)),
+                SlqRuDateParser.
+                        parseDate(elFooter.get(0).text().substring(0, elFooter.get(0).text().indexOf(" ["))),
                 elBody.get(1).text());
     }
 }

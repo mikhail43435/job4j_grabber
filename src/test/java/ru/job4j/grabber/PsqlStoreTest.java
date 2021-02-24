@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Properties;
 
 import java.sql.Connection;
@@ -55,7 +57,7 @@ public class PsqlStoreTest {
 
             Post post = new Post(url,
                     name,
-                    new SimpleDateFormat("yyyy-MM-dd").parse("2007-10-17 00:00"),
+                    LocalDate.of(2007, Month.DECEMBER, 17),
                     "test body");
             store.save(post);
             assertThat(store.findById(url).name, is(name));

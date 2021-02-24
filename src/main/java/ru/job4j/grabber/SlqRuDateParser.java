@@ -1,23 +1,19 @@
 package ru.job4j.grabber;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
-import static java.util.Objects.nonNull;
+import static java.util.Objects.isNull;
 
 public final class SlqRuDateParser {
 
     private static final Map<String, String> MAP_MONTHS = new HashMap<>();
-    private static final DateTimeFormatter DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("dd.MM.yyyy").withZone(ZoneId.systemDefault());
-    private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd.MM.yyyy");
 
     static {
         MAP_MONTHS.put("янв", "01");
@@ -38,42 +34,33 @@ public final class SlqRuDateParser {
         //not called
     }
 
-    public static Date parseDate(String textDate) throws ParseException {
-        String[] stringArray = textDate.split(",");
-        String[] stringArray2 = stringArray[0].split(" ");
-        if (stringArray.length != 2
-                || (stringArray2.length != 1 && stringArray2.length != 3)
-                || ((stringArray2.length == 3)
-                && ((stringArray2[0].length() != 1 && stringArray2[0].length() != 2)
-                        || stringArray2[1].length() != 3
-                        || stringArray2[2].length() != 2))) {
-            throw new ParseException("Ошибка парсинга даты: " + textDate, 0);
+    public static LocalDate parseDate(String textDate) throws ParseException {
+        String patternStandardDate = "\\d?\\d\\s[а-я]{3}+\\s\\d\\d,\\s\\d\\d:\\d\\d";
+        String patternToday = "сегодня,\\s\\d\\d:\\d\\d";
+        String patternYesterday = "вчера,\\s\\d\\d:\\d\\d";
+        if (Pattern.matches(patternStandardDate, textDate)) {
+            return getLongDate(textDate);
+        } else if (Pattern.matches(patternToday, textDate)) {
+            return ZonedDateTime.now(ZoneId.of("Europe/Moscow")).toLocalDate();
+        } else if (Pattern.matches(patternYesterday, textDate)) {
+            return ZonedDateTime.now(ZoneId.of("Europe/Moscow")).minusDays(1).toLocalDate();
         }
-        return stringArray2.length == 3
-                ? FORMATTER.parse(getDateLongDate(stringArray2)) : FORMATTER.parse(getDateShortDate(stringArray));
+        throw new ParseException("Ошибка парсинга даты >" + textDate + "<", 0);
     }
 
-    private static String getDateShortDate(String... stringArray) {
-        String date = "";
-        if (stringArray[0].contains("сегодня")) {
-            return DATE_TIME_FORMATTER.format(Instant.now());
-        } else if (stringArray[0].contains("вчера")) {
-            return DATE_TIME_FORMATTER.format(Instant.now().minus(1, ChronoUnit.DAYS));
-        }
-        return date;
-    }
-
-    private static String getDateLongDate(String... stringArray) {
-        String date = "";
+    private static LocalDate getLongDate(String textDate) throws ParseException {
+        String date;
+        String[] stringArray = textDate.replace(",", "").split("\\s");
         String month = MAP_MONTHS.get(stringArray[1]);
-        if (nonNull(month)) {
-            date = (stringArray[0].length() == 1 ? "0" : "")
-                    + stringArray[0]
-                    + "."
-                    + month
-                    + ".20"
-                    + stringArray[2];
+        if (isNull(month)) {
+            throw new ParseException("Ошибка парсинга даты >" + textDate + "< . Не распознан месяц :" + month, 0);
         }
-        return date;
+        date = (stringArray[0].length() == 1 ? "0" : "")
+                + stringArray[0]
+                + "."
+                + month
+                + ".20"
+                + stringArray[2];
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 }

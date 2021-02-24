@@ -5,11 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.time.*;
 
 public class SlqRuDateParserTest {
 
@@ -17,26 +13,21 @@ public class SlqRuDateParserTest {
     public void testSimpleDate() throws ParseException {
         String date = "17 окт 07, 01:49";
         assertThat(SlqRuDateParser.parseDate(date),
-                is(new SimpleDateFormat("yyyy-MM-dd").parse("2007-10-17 00:00")));
+                is(LocalDate.of(2007, Month.OCTOBER, 17)));
     }
 
     @Test
     public void testToday() throws ParseException {
         String date = "сегодня, 08:38";
-        DateTimeFormatter formatter =
-                DateTimeFormatter.ofPattern("dd.MM.yyyy").withZone(ZoneId.systemDefault());
         assertThat(SlqRuDateParser.parseDate(date),
-                is(new SimpleDateFormat("dd.MM.yyyy").parse(formatter.format(Instant.now()))));
+                is(ZonedDateTime.now(ZoneId.of("Europe/Moscow")).toLocalDate()));
     }
 
     @Test
     public void testYesterday() throws ParseException {
         String date = "вчера, 08:38";
-        DateTimeFormatter formatter =
-                DateTimeFormatter.ofPattern("dd.MM.yyyy").withZone(ZoneId.systemDefault());
         assertThat(SlqRuDateParser.parseDate(date),
-                is(new SimpleDateFormat("dd.MM.yyyy").
-                        parse(formatter.format(Instant.now().minus(1, ChronoUnit.DAYS)))));
+                is(ZonedDateTime.now(ZoneId.of("Europe/Moscow")).minusDays(1).toLocalDate()));
     }
 
     @Test(expected = ParseException.class)

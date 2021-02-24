@@ -1,11 +1,11 @@
 package ru.job4j.grabber.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Post {
     public String url;
     public String name;
-    public Date date;
+    public LocalDate date;
     public String body;
 
     @Override
@@ -18,7 +18,7 @@ public class Post {
                 '}';
     }
 
-    public Post(String url, String name, Date date, String body) {
+    public Post(String url, String name, LocalDate date, String body) {
         this.url = url;
         this.name = name;
         this.date = date;
