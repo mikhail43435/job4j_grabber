@@ -30,18 +30,26 @@ public class PsqlStore implements Store, AutoCloseable {
 
     @Override
     public void save(Post post) {
+        normalizePost(post);
         try (PreparedStatement statement =
                      connection.prepareStatement("insert into post"
                              + "(name, text, link, created_date) values (?, ?, ?, ?)")) {
-            statement.setString(1, post.name.substring(0, Math.min(post.name.length(), 200)));
-            statement.setString(2, post.body.substring(0, Math.min(post.body.length(), 10000)));
-            statement.setString(3, post.url.substring(0, Math.min(post.url.length(), 255)));
+            statement.setString(1, post.name);
+            statement.setString(2, post.body);
+            statement.setString(3, post.url);
             statement.setTimestamp(4, new java.sql.Timestamp(post.date.toEpochDay()));
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    private Post normalizePost(Post post) {
+        post.name = post.name.substring(0, Math.min(post.name.length(), 200));
+        post.body = post.body.substring(0, Math.min(post.body.length(), 10000));
+        post.url = post.url.substring(0, Math.min(post.url.length(), 255));
+        return post;
     }
 
     @Override

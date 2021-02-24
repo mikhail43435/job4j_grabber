@@ -42,8 +42,11 @@ public class PsqlStoreTest {
     public void thenFindAll() throws Exception {
         try (PsqlStore store = new PsqlStore(ConnectionRollback.create(this.init()))) {
             String url = "www.test_001";
-            String name = "test name";
-
+            String name = "test name 1234567890"
+                    + "12345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                    + "12345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                    + "12345678901234567890123456789012345678901234567890123456789012345678901234567890"
+                    + "12345678901234567890123456789012345678901234567890123456789012345678901234567890";
             Post post = new Post(url,
                     name,
                     LocalDate.of(2007, Month.DECEMBER, 17),
