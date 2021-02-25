@@ -13,6 +13,10 @@ import static java.util.Objects.isNull;
 
 public final class SlqRuDateParser {
 
+    private static final Pattern PATTERN_STANDARD_DATE = Pattern.compile("\\d?\\d\\s[а-я]{3}+\\s\\d\\d,\\s\\d\\d:\\d\\d");
+    private static final Pattern PATTERN_TODAY = Pattern.compile("сегодня,\\s\\d\\d:\\d\\d");
+    private static final Pattern PATTERN_YESTERDAY = Pattern.compile("вчера,\\s\\d\\d:\\d\\d");
+
     private static final Map<String, String> MAP_MONTHS = new HashMap<>();
 
     static {
@@ -35,14 +39,11 @@ public final class SlqRuDateParser {
     }
 
     public static LocalDate parseDate(String textDate) throws ParseException {
-        String patternStandardDate = "\\d?\\d\\s[а-я]{3}+\\s\\d\\d,\\s\\d\\d:\\d\\d";
-        String patternToday = "сегодня,\\s\\d\\d:\\d\\d";
-        String patternYesterday = "вчера,\\s\\d\\d:\\d\\d";
-        if (Pattern.matches(patternStandardDate, textDate)) {
+        if (PATTERN_STANDARD_DATE.matcher(textDate).matches()) {
             return getLongDate(textDate);
-        } else if (Pattern.matches(patternToday, textDate)) {
+        } else if (PATTERN_TODAY.matcher(textDate).matches()) {
             return ZonedDateTime.now(ZoneId.of("Europe/Moscow")).toLocalDate();
-        } else if (Pattern.matches(patternYesterday, textDate)) {
+        } else if (PATTERN_YESTERDAY.matcher(textDate).matches()) {
             return ZonedDateTime.now(ZoneId.of("Europe/Moscow")).minusDays(1).toLocalDate();
         }
         throw new ParseException("Ошибка парсинга даты >" + textDate + "<", 0);
@@ -55,12 +56,11 @@ public final class SlqRuDateParser {
         if (isNull(month)) {
             throw new ParseException("Ошибка парсинга даты >" + textDate + "< . Не распознан месяц :" + month, 0);
         }
-        date = (stringArray[0].length() == 1 ? "0" : "")
-                + stringArray[0]
-                + "."
-                + month
-                + ".20"
-                + stringArray[2];
+        date = String.format("%s%s.%s.20%s",
+                (stringArray[0].length() == 1 ? "0" : ""),
+                stringArray[0],
+                month,
+                stringArray[2]);
         return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 }
