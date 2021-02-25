@@ -33,12 +33,16 @@ public class PsqlStore implements Store, AutoCloseable {
         normalizePost(post);
         try (PreparedStatement statement =
                      connection.prepareStatement("insert into post"
-                             + "(name, text, link, created_date) values (?, ?, ?, ?)")) {
+                             + "(name, text, link, created_date) values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, post.name);
             statement.setString(2, post.body);
             statement.setString(3, post.url);
             statement.setTimestamp(4, new java.sql.Timestamp(post.date.toEpochDay()));
             statement.executeUpdate();
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                post.id = rs.getInt(1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,11 +79,12 @@ public class PsqlStore implements Store, AutoCloseable {
     public Post findById(String id) throws SQLException {
         Post post = null;
         try (PreparedStatement statement =
-                     connection.prepareStatement("select * from post where link=?;")) {
-            statement.setString(1, id);
+                     connection.prepareStatement("select * from post where id=?;")) {
+            statement.setInt(1, Integer.parseInt(id));
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    post = new Post(resultSet.getString("link"),
+                    post = new Post(resultSet.getInt("id"),
+                            resultSet.getString("link"),
                             resultSet.getString("name"),
                             resultSet.getDate("created_date").toLocalDate(),
                             resultSet.getString("text")

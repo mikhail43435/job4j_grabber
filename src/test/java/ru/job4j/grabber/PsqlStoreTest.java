@@ -27,17 +27,6 @@ public class PsqlStoreTest {
         }
     }
 
-/*    @Test
-    public void thenPostStandartDate() throws IOException, ParseException, SQLException {
-        PsqlStore store = new PsqlStore(this.init());
-        String url = "https://www.sql.ru/forum/1328546-1/administrator-baz-dannyh-oracle-200-000-250-000-rub-moskva";
-        SqlRuParse parser = new SqlRuParse();
-        Post post = parser.detail(url);
-        store.save(post);
-        System.out.println(store.findById(url).url);
-
-    }*/
-
     @Test
     public void thenFindAll() throws Exception {
         try (PsqlStore store = new PsqlStore(ConnectionRollback.create(this.init()))) {
@@ -66,7 +55,7 @@ public class PsqlStoreTest {
                     LocalDate.of(2007, 12, 17),
                     "test body");
             store.save(post);
-            assertThat(store.findById(url).name, is(name));
+            assertThat(store.findById(String.valueOf(post.id)).id, is(post.id));
         }
     }
 }
