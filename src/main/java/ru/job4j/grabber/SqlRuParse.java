@@ -18,7 +18,7 @@ import static java.util.Objects.nonNull;
 public class SqlRuParse implements Parse {
 
     public static void main(String[] args) throws Exception {
-        for (int i = 1; i < 2; i++) {
+/*        for (int i = 1; i < 2; i++) {
             System.out.println("Printing page " + i + "...");
             System.out.println("-----------------");
             Document doc = Jsoup.connect("https://www.sql.ru/forum/job-offers/" + i).get();
@@ -34,7 +34,7 @@ public class SqlRuParse implements Parse {
                     System.out.println("-----------------------------------------------------");
                 }
             }
-        }
+        }*/
     }
 
     private static String getBody(String link) throws IOException {

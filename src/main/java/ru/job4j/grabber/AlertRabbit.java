@@ -28,18 +28,14 @@ public class AlertRabbit {
             JobDetail job = newJob(Rabbit.class)
                     .usingJobData(data)
                     .build();
-
             SimpleScheduleBuilder times = simpleSchedule()
                     .withIntervalInSeconds(5)
                     .repeatForever();
-
             Trigger trigger = newTrigger()
                     .startNow()
                     .withSchedule(times)
                     .build();
-
             scheduler.scheduleJob(job, trigger);
-
             Thread.sleep(interval);
             scheduler.shutdown();
             System.out.println(store);

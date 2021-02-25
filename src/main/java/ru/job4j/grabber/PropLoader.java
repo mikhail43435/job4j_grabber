@@ -19,7 +19,7 @@ public class PropLoader {
     public static Properties load(String propName) {
         Properties config = new Properties();
         try (InputStream inputStream =
-                     AlertRabbit.class.getClassLoader().getResourceAsStream(propName)) {
+                     PropLoader.class.getClassLoader().getResourceAsStream(propName)) {
             config.load(inputStream);
         } catch (Exception e) {
             e.printStackTrace();
