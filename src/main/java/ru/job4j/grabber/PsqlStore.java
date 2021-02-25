@@ -32,12 +32,13 @@ public class PsqlStore implements Store, AutoCloseable {
     public void save(Post post) {
         normalizePost(post);
         try (PreparedStatement statement =
-                     connection.prepareStatement("insert into post"
-                             + "(name, text, link, created_date) values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+                     connection.prepareStatement("INSERT INTO POST"
+                             + "(name, text, link, created_date) VALUES (?, ?, ?, ?)" +
+                             "ON CONFLICT DO NOTHING", Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, post.name);
             statement.setString(2, post.body);
             statement.setString(3, post.url);
-            statement.setTimestamp(4, new java.sql.Timestamp(post.date.toEpochDay()));
+            statement.setTimestamp(4, Timestamp.valueOf(post.date.atStartOfDay()));
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
@@ -46,7 +47,6 @@ public class PsqlStore implements Store, AutoCloseable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private Post normalizePost(Post post) {
